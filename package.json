@@ -1,0 +1,16 @@
+{
+  "name": "bionic-reading",
+  "version": "1.0.0",
+  "description": "Helps developers add support for bionic reading to their content 📚",
+  "keywords": [
+    "Bionic Reading"
+  ],
+  "module": "dist/reading.esm.js",
+  "unpkg": "dist/reading.min.js",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.16.2"
+  }
+}
