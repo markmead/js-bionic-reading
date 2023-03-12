@@ -7,7 +7,7 @@ export default function () {
 
   const articleElements = [
     ...articleElement.querySelectorAll(
-      'h1, h2, h3, h4, h5, h6, p, li, a, pre, code, span, em, i, strong, b'
+      'h1, h2, h3, h4, h5, p, a, li, blockquote'
     ),
   ]
 
