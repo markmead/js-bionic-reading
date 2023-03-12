@@ -24,7 +24,7 @@ export default function () {
         return `<strong>${textWord}</strong>`
       }
 
-      const wordLengthHalf = Math.floor(wordLength / 2)
+      const wordLengthHalf = Math.ceil(wordLength / 2)
 
       const wordArray = textWord.split('')
       const wordArrayWithBold = wordArray.map((wordLetter, letterIndex) => {
