@@ -1,41 +1,43 @@
 export default function () {
-  const articleElement = document.querySelector('[data-bionic-reading]')
+  const bionicTargets = [...document.querySelectorAll('[data-bionic-reading]')]
 
-  if (!articleElement) {
+  if (!bionicTargets.length) {
     return
   }
 
-  const articleElements = [
-    ...articleElement.querySelectorAll(
-      'h1, h2, h3, h4, h5, p, a, li, blockquote'
-    ),
-  ]
+  bionicTargets.forEach((bionicTarget) => {
+    const articleElements = [
+      ...bionicTarget.querySelectorAll(
+        'h1, h2, h3, h4, h5, p, a, li, blockquote'
+      ),
+    ]
 
-  articleElements.forEach((contentElement) => {
-    contentElement.style.fontWeight = 400
+    articleElements.forEach((contentElement) => {
+      contentElement.style.fontWeight = 400
 
-    const elementText = contentElement.innerText
-    const elementTextArray = elementText.split(' ')
+      const elementText = contentElement.innerText
+      const elementTextArray = elementText.split(' ')
 
-    const elementTextArrayWithBold = elementTextArray.map((textWord) => {
-      const wordLength = textWord.length
+      const elementTextArrayWithBold = elementTextArray.map((textWord) => {
+        const wordLength = textWord.length
 
-      if (wordLength === 1) {
-        return `<strong>${textWord}</strong>`
-      }
+        if (wordLength === 1) {
+          return `<strong>${textWord}</strong>`
+        }
 
-      const wordLengthHalf = Math.ceil(wordLength / 2)
+        const wordLengthHalf = Math.ceil(wordLength / 2)
 
-      const wordArray = textWord.split('')
-      const wordArrayWithBold = wordArray.map((wordLetter, letterIndex) => {
-        return letterIndex < wordLengthHalf
-          ? `<strong>${wordLetter}</strong>`
-          : wordLetter
+        const wordArray = textWord.split('')
+        const wordArrayWithBold = wordArray.map((wordLetter, letterIndex) => {
+          return letterIndex < wordLengthHalf
+            ? `<strong>${wordLetter}</strong>`
+            : wordLetter
+        })
+
+        return wordArrayWithBold.join('')
       })
 
-      return wordArrayWithBold.join('')
+      contentElement.innerHTML = elementTextArrayWithBold.join(' ')
     })
-
-    contentElement.innerHTML = elementTextArrayWithBold.join(' ')
   })
 }
