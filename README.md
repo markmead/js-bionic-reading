@@ -3,6 +3,8 @@
 Helps developers add support for [bionic reading](https://bionic-reading.com) to
 their content 📚
 
+![](https://github.com/markmead/js-bionic-reading/assets/50486078/ca1eddbd-759f-498e-b368-d5a8a580faad)
+
 ## Install
 
 ### With a CDN
@@ -51,8 +53,6 @@ document.addEventListener('DOMContentLoaded', bionicReading())
   </ul>
 </article>
 ```
-
-And that's it.
 
 ## Stats
 
