@@ -31,10 +31,6 @@ export default function bionicReading(bionicOptions = {}) {
   }
 
   bionicTargets.forEach((bionicTarget) => {
-    if (bionicTarget.getAttribute('data-bionic-reading') === 'off') {
-      return
-    }
-
     const articleElements = [
       ...bionicTarget.querySelectorAll(resolvedOptions.contentSelector),
     ].filter(
@@ -144,6 +140,8 @@ function createBionicFragment(textContent, resolvedOptions) {
 
 function processToken(tokenValue, resolvedOptions) {
   const documentFragment = document.createDocumentFragment()
+  // Note: A new regex is created per call, so lastIndex doesn't carry over between calls.
+  // This is important for correctness with the global flag.
   const wordPattern = /[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*/gu
 
   let lastIndex = 0

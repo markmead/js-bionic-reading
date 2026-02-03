@@ -108,10 +108,10 @@ If a specific block should not be processed, set:
 
 ## Accessibility
 
-- The library wraps word portions in `<strong>` elements, which are semantically
-  meaningful. Some screen readers may announce "strong" or change voice tone,
-  which could be distracting. If this is a concern, consider styling emphasized
-  portions with CSS instead, or open an issue to discuss alternatives.
+- The library uses `<strong>` elements to emphasize portions of words. While
+  semantically meaningful, some screen readers may announce "strong" or change
+  voice tone, which could be distracting. Consider opening an issue if this is a
+  concern for your use case.
 
 ### MutationObserver Example
 
@@ -128,10 +128,15 @@ const contentObserver = new MutationObserver(() => {
   window.requestAnimationFrame(applyBionicReading)
 })
 
-contentObserver.observe(document.body, {
-  childList: true,
-  subtree: true,
-})
+// Observe a specific container instead of entire document.body for better performance
+const contentContainer = document.getElementById('contentEl')
+
+if (contentContainer) {
+  contentObserver.observe(contentContainer, {
+    childList: true,
+    subtree: true,
+  })
+}
 
 applyBionicReading()
 ```
@@ -150,10 +155,15 @@ applyBionicReading()
     window.requestAnimationFrame(applyBionicReading)
   })
 
-  contentObserver.observe(document.body, {
-    childList: true,
-    subtree: true,
-  })
+  // Observe a specific container instead of entire document.body for better performance
+  const contentContainer = document.getElementById('contentEl')
+
+  if (contentContainer) {
+    contentObserver.observe(contentContainer, {
+      childList: true,
+      subtree: true,
+    })
+  }
 
   document.addEventListener('DOMContentLoaded', applyBionicReading)
 </script>
