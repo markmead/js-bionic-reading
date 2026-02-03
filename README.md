@@ -106,6 +106,8 @@ If a specific block should not be processed, set:
 
 For dynamically injected content:
 
+**With a Package Manager:**
+
 ```js
 import bionicReading from 'data-bionic-reading'
 
@@ -121,6 +123,29 @@ contentObserver.observe(document.body, {
 })
 
 applyBionicReading()
+```
+
+**With a CDN:**
+
+```html
+<script>
+  const applyBionicReading = () => {
+    if (window.bionicReading) {
+      window.bionicReading(window.bionicReadingOptions)
+    }
+  }
+
+  const contentObserver = new MutationObserver(() => {
+    window.requestAnimationFrame(applyBionicReading)
+  })
+
+  contentObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+  })
+
+  document.addEventListener('DOMContentLoaded', applyBionicReading)
+</script>
 ```
 
 ## Example
