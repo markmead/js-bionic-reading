@@ -1,8 +1,8 @@
 # Bionic Reading
 
 Effortless bionic reading support for web content—improves readability by
-emphasizing the first half of each word. Perfect for blogs, articles, and
-long-form content.
+emphasizing approximately the first half of each word. Perfect for blogs,
+articles, and long-form content.
 
 ![](https://img.shields.io/bundlephobia/min/data-bionic-reading)
 ![](https://img.shields.io/npm/v/data-bionic-reading)
@@ -102,6 +102,16 @@ If a specific block should not be processed, set:
 - If your app injects content dynamically, call `bionicReading()` only after the
   content is inserted, or pair it with a `MutationObserver` and
   `requestAnimationFrame` to batch updates per frame.
+- **Warning**: Observing `document.body` with `subtree: true` can cause
+  performance issues on dynamic sites. Instead, observe only the specific
+  container where content is injected to minimize unnecessary processing.
+
+## Accessibility
+
+- The library wraps word portions in `<strong>` elements, which are semantically
+  meaningful. Some screen readers may announce "strong" or change voice tone,
+  which could be distracting. If this is a concern, consider styling emphasized
+  portions with CSS instead, or open an issue to discuss alternatives.
 
 ### MutationObserver Example
 

@@ -15,6 +15,7 @@
   "unpkg": "dist/reading.min.js",
   "exports": {
     ".": {
+      "require": null,
       "import": "./dist/reading.esm.js",
       "default": "./dist/reading.esm.js"
     },

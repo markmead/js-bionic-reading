@@ -49,8 +49,13 @@ export default function bionicReading(bionicOptions = {}) {
         return
       }
 
-      if (contentElement.closest('[data-bionic-reading="off"]')) {
-        return
+      // Check if element or any ancestor has opt-out (handles nested opt-out scenarios)
+      try {
+        if (contentElement.closest('[data-bionic-reading="off"]')) {
+          return
+        }
+      } catch {
+        // Invalid selector or other DOM error; skip opt-out check
       }
 
       if (
@@ -92,12 +97,19 @@ function collectTextNodes(rootElement, excludeSelector) {
 
         const parentElement = currentNode.parentElement
 
-        if (
-          !parentElement ||
-          parentElement.closest(excludeSelector) ||
-          parentElement.closest('strong')
-        ) {
-          return NodeFilter.FILTER_REJECT
+        try {
+          if (
+            !parentElement ||
+            parentElement.closest(excludeSelector) ||
+            parentElement.closest('strong')
+          ) {
+            return NodeFilter.FILTER_REJECT
+          }
+        } catch {
+          // Invalid selector; only filter if parentElement is missing
+          if (!parentElement) {
+            return NodeFilter.FILTER_REJECT
+          }
         }
 
         return NodeFilter.FILTER_ACCEPT
@@ -132,7 +144,7 @@ function createBionicFragment(textContent, resolvedOptions) {
 
 function processToken(tokenValue, resolvedOptions) {
   const documentFragment = document.createDocumentFragment()
-  const wordPattern = /[\p{L}\p{N}]+(?:'[\p{L}\p{N}]+)*/gu
+  const wordPattern = /[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*/gu
 
   let lastIndex = 0
   let wordMatch = wordPattern.exec(tokenValue)
