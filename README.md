@@ -33,11 +33,11 @@ before the script loads:
   }
 </script>
 
-<script
-  defer
-  src="https://unpkg.com/data-bionic-reading@latest/dist/reading.min.js"
-></script>
+<script src="https://unpkg.com/data-bionic-reading@latest/dist/reading.min.js"></script>
 ```
+
+(Note: The inline script executes immediately and sets the global options, then the
+CDN script loads and reads those options during initialization.)
 
 ### With a Package Manager
 

@@ -11,7 +11,14 @@ const DEFAULT_OPTIONS = {
 
 /**
  * Apply bionic reading to matching content in the DOM.
- * @param {Partial<typeof DEFAULT_OPTIONS>} [bionicOptions]
+ * @param {Object} [bionicOptions] - Configuration options
+ * @param {string} [bionicOptions.targetSelector] - Root elements to scan
+ * @param {string} [bionicOptions.contentSelector] - Content elements to process
+ * @param {string} [bionicOptions.excludeSelector] - Elements to skip
+ * @param {number} [bionicOptions.minWordLength] - Minimum word length to process
+ * @param {number} [bionicOptions.boldRatio] - Ratio of word to bold (0-1)
+ * @param {number|null} [bionicOptions.baseFontWeight] - Base font weight to apply
+ * @param {string} [bionicOptions.processedAttribute] - Attribute to track processed elements
  */
 export default function bionicReading(bionicOptions = {}) {
   const resolvedOptions = { ...DEFAULT_OPTIONS, ...bionicOptions }
@@ -125,7 +132,7 @@ function createBionicFragment(textContent, resolvedOptions) {
 
 function processToken(tokenValue, resolvedOptions) {
   const documentFragment = document.createDocumentFragment()
-  const wordPattern = /[\p{L}\p{N}]+(?:[''\-][\p{L}\p{N}]+)*/gu
+  const wordPattern = /[\p{L}\p{N}]+(?:'[\p{L}\p{N}]+)*/gu
 
   let lastIndex = 0
   let wordMatch = wordPattern.exec(tokenValue)
