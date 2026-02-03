@@ -1,16 +1,28 @@
 {
   "name": "data-bionic-reading",
-  "version": "1.0.5",
-  "description": "Helps developers add support for bionic reading to their content 📚",
+  "version": "1.1.0",
+  "description": "Effortless bionic reading support for web content—improves readability by emphasizing the first half of each word.",
   "keywords": [
-    "Bionic Reading"
+    "bionic-reading",
+    "accessibility",
+    "a11y",
+    "readability",
+    "web-content"
   ],
+  "main": "dist/reading.esm.js",
   "module": "dist/reading.esm.js",
   "unpkg": "dist/reading.min.js",
+  "exports": {
+    ".": {
+      "import": "./dist/reading.esm.js",
+      "default": "./dist/reading.esm.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "node scripts/build.js"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0"
+    "esbuild": "^0.27.2"
   }
 }

@@ -1,7 +1,13 @@
 # Bionic Reading
 
-Helps developers add support for [bionic reading](https://bionic-reading.com) to
-their content 📚
+Effortless bionic reading support for web content—improves readability by
+emphasis on the first half of each word. Perfect for blogs, articles, and
+long-form content.
+
+![](https://img.shields.io/bundlephobia/min/data-bionic-reading)
+![](https://img.shields.io/npm/v/data-bionic-reading)
+![](https://img.shields.io/npm/dt/data-bionic-reading)
+![](https://img.shields.io/github/license/markmead/data-bionic-reading)
 
 ![](https://github.com/markmead/js-bionic-reading/assets/50486078/ca1eddbd-759f-498e-b368-d5a8a580faad)
 
@@ -10,6 +16,23 @@ their content 📚
 ### With a CDN
 
 ```html
+<script
+  defer
+  src="https://unpkg.com/data-bionic-reading@latest/dist/reading.min.js"
+></script>
+```
+
+To customize options when using the CDN, set `window.bionicReadingOptions`
+before the script loads:
+
+```html
+<script>
+  window.bionicReadingOptions = {
+    boldRatio: 0.6,
+    minWordLength: 3,
+  }
+</script>
+
 <script
   defer
   src="https://unpkg.com/data-bionic-reading@latest/dist/reading.min.js"
@@ -26,37 +49,108 @@ npm install -D data-bionic-reading
 ```js
 import bionicReading from 'data-bionic-reading'
 
-document.addEventListener('DOMContentLoaded', bionicReading())
+document.addEventListener('DOMContentLoaded', () => {
+  bionicReading()
+})
+```
+
+## Options
+
+Out of the box, `bionicReading()` works with sensible defaults. You can
+customize behavior by passing an options object:
+
+```js
+import bionicReading from 'data-bionic-reading'
+
+document.addEventListener('DOMContentLoaded', () => {
+  bionicReading({
+    // targetSelector: '[data-bionic-reading]',
+    // contentSelector: 'h1, h2, h3, h4, h5, h6, p, a, li, blockquote, figcaption, dt, dd',
+    // excludeSelector: 'script, style, code, pre, kbd, samp, noscript',
+    // minWordLength: 2,
+    // boldRatio: 0.5,
+    // baseFontWeight: 400,
+    // processedAttribute: 'data-bionic-processed',
+  })
+})
+```
+
+(All shown above are defaults. Only pass options you wish to override.)
+
+### Option Details
+
+- `targetSelector`: Root elements to scan.
+- `contentSelector`: Content elements inside each target that are eligible.
+- `excludeSelector`: Elements that are never modified (useful for code blocks).
+- `minWordLength`: Shorter words are left untouched.
+- `boldRatio`: 0–1; how much of each word is bolded.
+- `baseFontWeight`: Applied to content elements (use `null` to skip).
+- `processedAttribute`: Attribute used to avoid double-processing.
+
+### Opt Out Per Section
+
+If a specific block should not be processed, set:
+
+```html
+<article data-bionic-reading="off"> ... </article>
+```
+
+## Performance Tips
+
+- Limit scope by narrowing `targetSelector`.
+- Keep `contentSelector` focused on readable content, not layout wrappers.
+- If your app injects content dynamically, call `bionicReading()` only after the
+  content is inserted, or pair it with a `MutationObserver` and debounce.
+
+### MutationObserver Example
+
+For dynamically injected content:
+
+```js
+import bionicReading from 'data-bionic-reading'
+
+const applyBionicReading = () => bionicReading()
+
+const contentObserver = new MutationObserver(() => {
+  window.requestAnimationFrame(applyBionicReading)
+})
+
+contentObserver.observe(document.body, {
+  childList: true,
+  subtree: true,
+})
+
+applyBionicReading()
 ```
 
 ## Example
 
+> Note: The following example content is AI-generated for demonstration
+> purposes.
+
 ```html
 <article data-bionic-reading>
-  <h1>Welcome to my website, it is a great website!</h1>
+  <h1>Why Bionic Reading Matters for Web Accessibility</h1>
 
   <p>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis,
-    dignissimos exercitationem! Ratione natus explicabo, maiores enim
-    reprehenderit perspiciatis ipsum deserunt?
+    Bionic reading is a technique that emphasizes the first half of each word,
+    helping readers scan content faster and reduce cognitive load. By drawing
+    attention to key letterforms, it creates a visual anchor that guides your
+    eye through the text.
   </p>
 
   <p>
-    Lorem ipsum dolor sit amet <a href="#">consectetur adipisicing</a> elit.
-    Rerum, possimus.
+    This approach works especially well for people with dyslexia, ADHD, and
+    other reading differences. Many modern websites now offer bionic reading as
+    an <a href="#">accessibility feature</a> to improve user experience.
   </p>
+
+  <h2>Benefits</h2>
 
   <ul>
-    <li>Lorem ipsum dolor sit amet.</li>
-
-    <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</li>
+    <li>Faster reading speed without sacrificing comprehension</li>
+    <li>Reduced eye fatigue during extended reading sessions</li>
+    <li>Better accessibility for neurodivergent users</li>
   </ul>
 </article>
 ```
-
-## Stats
-
-![](https://img.shields.io/bundlephobia/min/data-bionic-reading)
-![](https://img.shields.io/npm/v/data-bionic-reading)
-![](https://img.shields.io/npm/dt/data-bionic-reading)
-![](https://img.shields.io/github/license/markmead/data-bionic-reading)
