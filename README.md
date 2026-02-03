@@ -144,6 +144,8 @@ applyBionicReading()
 **With a CDN:**
 
 ```html
+<script src="https://unpkg.com/data-bionic-reading@latest/dist/reading.min.js"></script>
+
 <script>
   const applyBionicReading = () => {
     if (window.bionicReading) {
@@ -156,7 +158,7 @@ applyBionicReading()
   })
 
   // Observe a specific container instead of entire document.body for better performance
-  const contentContainer = document.getElementById('contentEl')
+  const contentContainer = document.getElementById('content')
 
   if (contentContainer) {
     contentObserver.observe(contentContainer, {
@@ -167,8 +169,6 @@ applyBionicReading()
 
   document.addEventListener('DOMContentLoaded', applyBionicReading)
 </script>
-
-<script src="https://unpkg.com/data-bionic-reading@latest/dist/reading.min.js"></script>
 ```
 
 ## Example
