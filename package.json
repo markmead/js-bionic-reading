@@ -1,6 +1,7 @@
 {
   "name": "data-bionic-reading",
   "version": "1.1.0",
+  "type": "module",
   "description": "Effortless bionic reading support for web content—improves readability by emphasizing the first half of each word.",
   "keywords": [
     "bionic-reading",

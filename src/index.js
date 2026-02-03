@@ -125,7 +125,7 @@ function createBionicFragment(textContent, resolvedOptions) {
 
 function processToken(tokenValue, resolvedOptions) {
   const documentFragment = document.createDocumentFragment()
-  const wordPattern = /[\p{L}\p{N}]+/gu
+  const wordPattern = /[\p{L}\p{N}]+(?:[''\-][\p{L}\p{N}]+)*/gu
 
   let lastIndex = 0
   let wordMatch = wordPattern.exec(tokenValue)

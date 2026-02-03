@@ -1,7 +1,7 @@
 # Bionic Reading
 
 Effortless bionic reading support for web content—improves readability by
-emphasis on the first half of each word. Perfect for blogs, articles, and
+emphasizing the first half of each word. Perfect for blogs, articles, and
 long-form content.
 
 ![](https://img.shields.io/bundlephobia/min/data-bionic-reading)
@@ -100,7 +100,8 @@ If a specific block should not be processed, set:
 - Limit scope by narrowing `targetSelector`.
 - Keep `contentSelector` focused on readable content, not layout wrappers.
 - If your app injects content dynamically, call `bionicReading()` only after the
-  content is inserted, or pair it with a `MutationObserver` and debounce.
+  content is inserted, or pair it with a `MutationObserver` and
+  `requestAnimationFrame` to batch updates per frame.
 
 ### MutationObserver Example
 
