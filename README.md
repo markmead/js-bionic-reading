@@ -8,6 +8,8 @@ articles, and long-form content.
 ![](https://img.shields.io/npm/dt/data-bionic-reading)
 ![](https://img.shields.io/github/license/markmead/data-bionic-reading)
 
+View the demostration on [CodePen](https://codepen.io/markmead/pen/ByzqNZK).
+
 ## Install
 
 ### With a CDN
