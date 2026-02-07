@@ -4,12 +4,9 @@ Effortless bionic reading support for web content—improves readability by
 emphasizing approximately the first half of each word. Perfect for blogs,
 articles, and long-form content.
 
-![](https://img.shields.io/bundlephobia/min/data-bionic-reading)
 ![](https://img.shields.io/npm/v/data-bionic-reading)
 ![](https://img.shields.io/npm/dt/data-bionic-reading)
 ![](https://img.shields.io/github/license/markmead/data-bionic-reading)
-
-![](https://github.com/markmead/js-bionic-reading/assets/50486078/ca1eddbd-759f-498e-b368-d5a8a580faad)
 
 ## Install
 
