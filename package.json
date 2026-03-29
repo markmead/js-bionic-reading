@@ -1,6 +1,6 @@
 {
   "name": "data-bionic-reading",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "description": "Effortless bionic reading support for web content—improves readability by emphasizing approximately the first half of each word. Perfect for blogs, articles, and long-form content.",
   "keywords": [
@@ -28,8 +28,8 @@
     "prebuild": "npm run lint:check"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "eslint": "^9.39.2",
-    "esbuild": "^0.27.2"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "esbuild": "^0.27.4"
   }
 }
